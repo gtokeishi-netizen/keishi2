@@ -808,30 +808,7 @@ function gi_get_search_stats() {
     return wp_parse_args($stats, $defaults);
 }
 
-/**
- * デバッグ用ヘルパー関数
- */
-function gi_debug_log($message, $data = null) {
-    if (defined('WP_DEBUG') && WP_DEBUG) {
-        $log_message = '[Grant Insight Debug] ' . $message;
-        if ($data !== null) {
-            $log_message .= ' | Data: ' . print_r($data, true);
-        }
-        error_log($log_message);
-    }
-}
 
-/**
- * ACFフィールドの存在チェック
- */
-function gi_check_acf_field_exists($field_name, $post_id = null) {
-    if (!function_exists('get_field_object')) {
-        return false;
-    }
-    
-    $field = get_field_object($field_name, $post_id);
-    return !empty($field) && isset($field['key']);
-}
 
 /**
  * 投稿タイプごとの必須フィールドチェック
